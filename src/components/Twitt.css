@@ -1,0 +1,47 @@
+.twitt-container {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  border: 0.5px solid white;
+  padding: 2% 0;
+}
+.avatar-container {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5%;
+  font-size: 1em;
+}
+.content-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.more-btn {
+  margin: 0;
+  cursor: pointer;
+  font-size: 2em;
+  transform: translateY(-0.5em);
+}
+h3 {
+  margin: 0;
+}
+.content-body {
+  margin-top: 2%;
+}
