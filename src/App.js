@@ -13,18 +13,26 @@ function App() {
     return data;
   };
 
+  const getSingleData = async (dataType, currentId) => {
+    const data = await getData(`${dataType}${currentId}`);
+    // console.log(`${dataType}${currentId}`);
+    // console.log(data);
+    return data;
+  };
+
   const createPostList = async num => {
     let data = await getData('posts');
     let users = await getData('users');
     let photos = await getData('photos');
 
-    const postsList = data.filter(e => e.id <= num);
+    let postsList = data.filter(e => e.id <= num);
     postsList.forEach(e => {
       e.photo = photos[e.id].url;
       e.photoText = photos[e.id].title;
       e.userName = users[e.userId].username;
       e.liked = false;
     });
+
     console.log(postsList);
     setPosts([...postsList]);
   };

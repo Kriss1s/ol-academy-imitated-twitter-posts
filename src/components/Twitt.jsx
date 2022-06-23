@@ -33,7 +33,7 @@ export default function Twitt({
           <div className='more-btn'>...</div>
         </div>
         <div className='content-body'>
-          <div clasName='text'>{body}</div>
+          <div className='text'>{body}</div>
           <div className='img-div'>
             <img className='post-img' src={photo} alt={photoText} />
           </div>
