@@ -1,20 +1,43 @@
 import './Twitt.css';
 
-export default function Twitt({ userId, id, title, body }) {
+export default function Twitt({
+  userId,
+  id,
+  title,
+  body,
+  userName,
+  liked,
+  photo,
+  photoText,
+  getData,
+  handleUpdateList,
+}) {
+  //   const getSingleData = async (dataType, currentId) => {
+  //     const data = await getData(`${dataType}${currentId}`);
+  //     // console.log(`${dataType}${currentId}`);
+  //     // console.log(data);
+  //     return data;
+  //   };
+  //   console.log(id, liked, userName, photo, photoText);
   return (
     <div className='twitt-container'>
       <div className='avatar-container'>
         <div className='avatar' style={{ backgroundColor: randomLightColor() }}>
-          K
+          {userName[0].toUpperCase()}
         </div>
       </div>
+
       <div className='content-container'>
         <div className='content-header'>
-          <h3>{title}</h3>
+          <h3>{userName}</h3>
           <div className='more-btn'>...</div>
         </div>
-        <div className='content-body'>{body}</div>
-        <img src='' alt='' />
+        <div className='content-body'>
+          <div clasName='text'>{body}</div>
+          <div className='img-div'>
+            <img className='post-img' src={photo} alt={photoText} />
+          </div>
+        </div>
       </div>
     </div>
   );
