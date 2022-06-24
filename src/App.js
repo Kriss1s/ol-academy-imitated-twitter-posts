@@ -56,6 +56,7 @@ function App() {
             getData={getData}
             handleUpdateList={handleUpdateList}
             props={post}
+            posts={posts}
           ></Twitt>
         );
       })}
