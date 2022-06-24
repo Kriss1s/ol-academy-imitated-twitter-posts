@@ -103,3 +103,6 @@ h3 {
   color: rgb(249, 24, 128);
   background-color: rgba(249, 24, 128, 0.1);
 }
+.bullet {
+  position: absolute;
+}

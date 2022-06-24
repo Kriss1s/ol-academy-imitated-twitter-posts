@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BsHeart } from "react-icons/bs";
 import { FiMessageCircle } from "react-icons/fi";
 import { BiRepost, BiShare } from "react-icons/bi";
 import "./Twitt.css";
-
-////  afusheee gTxooov
 
 export default function Twitt({ props, getData, handleUpdateList }) {
   const [post, setPost] = useState({
@@ -17,6 +15,10 @@ export default function Twitt({ props, getData, handleUpdateList }) {
     photo: props.photo,
     photoText: props.photoText,
   });
+  const ref = useRef();
+
+  const [isMenuVisible, setIsMenuVisible] = useState();
+
   const getSingleData = async (currentId, userId) => {
     const getPhoto = await getData(`photos/${currentId}`);
     const getUserName = await getData(`users?id=${userId}`);
@@ -29,6 +31,12 @@ export default function Twitt({ props, getData, handleUpdateList }) {
     // console.log(data);
     const newPost = { ...post, photo, userName };
     setPost(newPost);
+  };
+
+  const handleBullet = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsMenuVisible(!isMenuVisible);
   };
 
   useEffect(() => {
@@ -48,7 +56,9 @@ export default function Twitt({ props, getData, handleUpdateList }) {
           className="content-header"
         >
           <h3>{post.userName}</h3>
-          <div className="more-btn">...</div>
+          <div className="more-btn" onClick={(e) => handleBullet(e)} ref={ref}>
+            ...
+          </div>
         </div>
         <div className="content-body" onClick={() => handleUpdateList(post.id)}>
           <div className="text">{post.body}</div>
@@ -80,6 +90,18 @@ export default function Twitt({ props, getData, handleUpdateList }) {
           </div>
         </div>
       </div>
+      {isMenuVisible && (
+        <ul
+          className="bullet"
+          style={{
+            top: ref.current.offsetTop + 25,
+            left: ref.current.offsetLeft,
+          }}
+        >
+          <li>Like</li>
+          <li>See Tweet</li>
+        </ul>
+      )}
     </div>
   );
 }
