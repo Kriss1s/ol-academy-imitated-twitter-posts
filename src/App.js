@@ -30,6 +30,7 @@ function App() {
       e.photoText = '';
       e.userName = '';
       e.liked = false;
+      e.comments = [];
     });
 
     console.log(postsList);
