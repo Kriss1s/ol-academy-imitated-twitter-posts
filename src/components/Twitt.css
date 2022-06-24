@@ -25,7 +25,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 5% 5% 0;
+  padding: 0 5% 0 0;
   font-size: 1em;
 }
 .content-header {
@@ -49,11 +49,57 @@ h3 {
 }
 .img-div {
   width: 100%;
-  height: 20em;
+  height: 20rem;
 }
 .post-img {
   margin-top: 5%;
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: cover;
+}
+.btn-container {
+  width: 90%;
+  margin-top: 5%;
+
+  display: flex;
+  justify-content: space-between;
+}
+.icon {
+  padding: 0.3em;
+  font-size: 2rem;
+  color: rgb(113, 118, 123);
+  margin-right: 0.3em;
+}
+.icon-box {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.icon-box:hover .icon {
+  border-radius: 50%;
+}
+.comments:hover,
+.share:hover {
+  color: rgb(29, 161, 242);
+}
+.comments:hover .icon,
+.share:hover .icon {
+  color: rgb(29, 161, 242);
+  background-color: rgba(29, 161, 242, 0.1);
+}
+.reposts:hover {
+  color: rgb(29, 242, 104);
+}
+.reposts:hover .icon {
+  color: rgb(29, 242, 104);
+  background-color: rgba(29, 242, 104, 0.1);
+}
+.active,
+.like:hover,
+.icon-like:hover {
+  color: rgb(249, 24, 128);
+}
+.like:hover .icon {
+  color: rgb(249, 24, 128);
+  background-color: rgba(249, 24, 128, 0.1);
 }

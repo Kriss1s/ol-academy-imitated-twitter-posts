@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { BsHeart } from 'react-icons/bs';
+import { FiMessageCircle } from 'react-icons/fi';
+import { BiRepost, BiShare } from 'react-icons/bi';
 import './Twitt.css';
 
 export default function Twitt({ props, getData, handleUpdateList }) {
@@ -30,22 +33,48 @@ export default function Twitt({ props, getData, handleUpdateList }) {
     getSingleData(props.id, props.userId);
   }, []);
   return (
-    <div onClick={() => handleUpdateList(post.id)} className='twitt-container'>
+    <div className='twitt-container'>
       <div className='avatar-container'>
         <div className='avatar' style={{ backgroundColor: randomLightColor() }}>
-          {/* {post.userName[0].toUpperCase()} */}
+          {post.userName.length > 1 ? post.userName[0].toUpperCase() : ''}
         </div>
       </div>
 
       <div className='content-container'>
-        <div className='content-header'>
+        <div
+          onClick={() => handleUpdateList(post.id)}
+          className='content-header'
+        >
           <h3>{post.userName}</h3>
           <div className='more-btn'>...</div>
         </div>
-        <div className='content-body'>
+        <div className='content-body' onClick={() => handleUpdateList(post.id)}>
           <div className='text'>{post.body}</div>
           <div className='img-div'>
             <img className='post-img' src={post.photo} alt={post.photoText} />
+          </div>
+        </div>
+        <div className='btn-container'>
+          <div
+            className='icon-box comments'
+            onClick={() => handleUpdateList(post.id)}
+          >
+            <FiMessageCircle className='icon' />
+            <span>{getRandomInt(500)}</span>
+          </div>
+          <div className=' icon-box reposts'>
+            <BiRepost className='icon' />
+            <span>{getRandomInt(3000)}</span>
+          </div>
+          <div
+            onClick={() => setPost({ ...post, liked: !post.liked })}
+            className={`like icon-box ${post.liked && 'active'}`}
+          >
+            <BsHeart className={`icon icon-like ${post.liked && 'active'}`} />
+            <span>{getRandomInt(10000)}</span>
+          </div>
+          <div className='icon-box share'>
+            <BiShare style={{ transform: 'scaleX(-1)' }} className='icon' />
           </div>
         </div>
       </div>
@@ -61,3 +90,6 @@ const randomLightColor = () => {
     ).slice(-2);
   return color;
 };
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
