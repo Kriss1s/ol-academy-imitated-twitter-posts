@@ -24,7 +24,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
     const getPhoto = await getData(`photos/${currentId}`);
     const getUserName = await getData(`users?id=${userId}`);
     const getComments = await getData(`comments?postId=${userId}`);
-    console.log(getComments);
+    // console.log(getComments);
     const photo = getPhoto.url;
     const userName = getUserName[0].username;
     const comments = getComments;
@@ -46,8 +46,12 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
 
   useEffect(() => {
     const handleCheck = e => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setIsMenuVisible(false);
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        !ref.current.contains(e.target)
+      ) {
+        setIsMenuVisible(!isMenuVisible);
       }
     };
 
@@ -149,7 +153,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
                     className='avatar'
                     style={{ backgroundColor: randomLightColor() }}
                   >
-                    {getRandomInt}
+                    {getRandomInt(10)}
                   </div>
                 </div>
                 <div className='comment-body'>
