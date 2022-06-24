@@ -22,14 +22,13 @@ function App() {
 
   const createPostList = async num => {
     let data = await getData('posts');
-    let users = await getData('users');
-    let photos = await getData('photos');
 
     let postsList = data.filter(e => e.id <= num);
+
     postsList.forEach(e => {
-      e.photo = photos[e.id].url;
-      e.photoText = photos[e.id].title;
-      e.userName = users[e.userId].username;
+      e.photo = '';
+      e.photoText = '';
+      e.userName = '';
       e.liked = false;
     });
 
@@ -37,8 +36,10 @@ function App() {
     setPosts([...postsList]);
   };
 
-  const handleUpdateList = newData => {
-    setPosts([...posts, newData]);
+  const handleUpdateList = id => {
+    console.log('eee');
+    const newData = posts.filter(e => e.id === id);
+    setPosts([...newData]);
   };
 
   useEffect(() => {
@@ -50,10 +51,11 @@ function App() {
       {posts.map(post => {
         return (
           <Twitt
+            // onClick={() => handleUpdateList(post.id)}
             key={post.id}
             getData={getData}
             handleUpdateList={handleUpdateList}
-            {...post}
+            props={post}
           ></Twitt>
         );
       })}

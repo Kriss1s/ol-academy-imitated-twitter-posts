@@ -1,41 +1,51 @@
+import { useState, useEffect } from 'react';
 import './Twitt.css';
 
-export default function Twitt({
-  userId,
-  id,
-  title,
-  body,
-  userName,
-  liked,
-  photo,
-  photoText,
-  getData,
-  handleUpdateList,
-}) {
-  //   const getSingleData = async (dataType, currentId) => {
-  //     const data = await getData(`${dataType}${currentId}`);
-  //     // console.log(`${dataType}${currentId}`);
-  //     // console.log(data);
-  //     return data;
-  //   };
-  //   console.log(id, liked, userName, photo, photoText);
+export default function Twitt({ props, getData, handleUpdateList }) {
+  const [post, setPost] = useState({
+    userId: props.userId,
+    id: props.id,
+    title: props.title,
+    body: props.body,
+    userName: props.userName,
+    liked: props.liked,
+    photo: props.photo,
+    photoText: props.photoText,
+  });
+  const getSingleData = async (currentId, userId) => {
+    const getPhoto = await getData(`photos/${currentId}`);
+    const getUserName = await getData(`users?id=${userId}`);
+    const getComments = await getData(`comments?postId=${userId}`);
+    // console.log(getComments);
+    const photo = getPhoto.url;
+    const userName = getUserName[0].username;
+    const comments = getComments;
+    // console.log(`${dataType}${currentId}`);
+    // console.log(data);
+    const newPost = { ...post, photo, userName };
+    setPost(newPost);
+  };
+
+  useEffect(() => {
+    getSingleData(props.id, props.userId);
+  }, []);
   return (
-    <div className='twitt-container'>
+    <div onClick={() => handleUpdateList(post.id)} className='twitt-container'>
       <div className='avatar-container'>
         <div className='avatar' style={{ backgroundColor: randomLightColor() }}>
-          {userName[0].toUpperCase()}
+          {/* {post.userName[0].toUpperCase()} */}
         </div>
       </div>
 
       <div className='content-container'>
         <div className='content-header'>
-          <h3>{userName}</h3>
+          <h3>{post.userName}</h3>
           <div className='more-btn'>...</div>
         </div>
         <div className='content-body'>
-          <div className='text'>{body}</div>
+          <div className='text'>{post.body}</div>
           <div className='img-div'>
-            <img className='post-img' src={photo} alt={photoText} />
+            <img className='post-img' src={post.photo} alt={post.photoText} />
           </div>
         </div>
       </div>
