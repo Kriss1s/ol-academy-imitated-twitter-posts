@@ -86,10 +86,22 @@ h3 {
 .share:hover {
   color: rgb(29, 161, 242);
 }
+
 .comments:hover .icon,
 .share:hover .icon {
   color: rgb(29, 161, 242);
   background-color: rgba(29, 161, 242, 0.1);
+}
+.comments,
+.share,
+.reposts,
+.active,
+.like,
+.icon-like {
+  transition: all 0.8s ease;
+}
+.icon {
+  transition: all 0.8s ease;
 }
 .reposts:hover {
   color: rgb(29, 242, 104);
@@ -138,4 +150,7 @@ h3 {
 }
 li {
   cursor: pointer;
+}
+img {
+  border-radius: 15px;
 }
