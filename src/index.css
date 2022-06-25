@@ -9,8 +9,13 @@ body {
 
   background-color: black;
   color: white;
+}
+.container {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 5vw;
 }
 
 code {

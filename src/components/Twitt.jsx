@@ -6,15 +6,7 @@ import './Twitt.css';
 
 export default function Twitt({ props, getData, handleUpdateList, posts }) {
   const [post, setPost] = useState({
-    userId: props.userId,
-    id: props.id,
-    title: props.title,
-    body: props.body,
-    userName: props.userName,
-    liked: props.liked,
-    photo: props.photo,
-    photoText: props.photoText,
-    comments: props.comments,
+    ...props,
   });
   const ref = useRef();
   const menuRef = useRef();
@@ -60,6 +52,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
       document.removeEventListener('click', handleCheck, true);
     };
   });
+
   return (
     <>
       <div className='twitt-container'>

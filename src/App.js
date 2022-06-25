@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import { BsTwitter, BsBell, BsBookmark, BsPerson } from 'react-icons/bs';
+import { RiHome7Fill } from 'react-icons/ri';
+import { BiEnvelope } from 'react-icons/bi';
+import { FaHashtag } from 'react-icons/fa';
+import { CgList, CgMoreO } from 'react-icons/cg';
 import './App.css';
 import Twitt from './components/Twitt';
 
@@ -51,19 +56,62 @@ function App() {
   }, []);
 
   return (
-    <div className='main-container'>
-      {posts.map(post => {
-        return (
-          <Twitt
-            // onClick={() => handleUpdateList(post.id)}
-            key={post.id}
-            getData={getData}
-            handleUpdateList={handleUpdateList}
-            props={post}
-            posts={posts}
-          ></Twitt>
-        );
-      })}
+    <div className='container'>
+      <div className='left-container'>
+        <ul className='menu-list'>
+          <li className='let-panel-buttons twitt-icon-block'>
+            <BsTwitter className='twitt-icon' />
+          </li>
+          <li className='let-panel-buttons'>
+            <RiHome7Fill className='nav-icons' />
+            <span>Home</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <FaHashtag className='nav-icons' />
+            <span>Explore</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <BsBell className='nav-icons' />
+            <span>Notifications</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <BiEnvelope className='nav-icons' />
+            <span>Messages</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <BsBookmark className='nav-icons' />
+            <span>Bookmarks</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <CgList className='nav-icons' />
+            <span>Lists</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <BsPerson className='nav-icons' />
+            <span>Profile</span>
+          </li>
+          <li className='let-panel-buttons'>
+            <CgMoreO className='nav-icons' />
+            <span>More</span>
+          </li>
+          <button className='twitt-btn'>Tweet</button>
+        </ul>
+      </div>
+      <div className='main-container'>
+        {posts.map(post => {
+          return (
+            <Twitt
+              // onClick={() => handleUpdateList(post.id)}
+              key={post.id}
+              getData={getData}
+              handleUpdateList={handleUpdateList}
+              props={post}
+              posts={posts}
+            ></Twitt>
+          );
+        })}
+      </div>
+      <div className='right-container'>ggg</div>
     </div>
   );
 }
