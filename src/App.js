@@ -13,24 +13,27 @@ function App() {
     return data;
   };
 
-  const getSingleData = async (dataType, currentId) => {
-    const data = await getData(`${dataType}${currentId}`);
-    // console.log(`${dataType}${currentId}`);
-    // console.log(data);
-    return data;
-  };
+  // const getSingleData = async (dataType, currentId) => {
+  //   const data = await getData(`${dataType}${currentId}`);
+  //   // console.log(`${dataType}${currentId}`);
+  //   // console.log(data);
+  //   return data;
+  // };
 
   const createPostList = async num => {
     let data = await getData('posts');
 
     let postsList = data.filter(e => e.id <= num);
-
+    let users = await getData('users');
+    let photos = await getData('photos');
+    let comments = await getData('comments');
+    // console.log(comments);
     postsList.forEach(e => {
-      e.photo = '';
-      e.photoText = '';
-      e.userName = '';
+      e.photo = photos[e.id].url;
+      e.photoText = photos[e.id].title;
+      e.userName = users[e.userId].username;
       e.liked = false;
-      e.comments = [];
+      e.comments = [...comments.filter(com => com.postId === e.id)];
     });
 
     console.log(postsList);
@@ -38,7 +41,7 @@ function App() {
   };
 
   const handleUpdateList = id => {
-    console.log('eee');
+    // console.log('eee');
     const newData = posts.filter(e => e.id === id);
     setPosts([...newData]);
   };

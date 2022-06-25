@@ -20,19 +20,19 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
   const menuRef = useRef();
   const [isMenuVisible, setIsMenuVisible] = useState();
 
-  const getSingleData = async (currentId, userId) => {
-    const getPhoto = await getData(`photos/${currentId}`);
-    const getUserName = await getData(`users?id=${userId}`);
-    const getComments = await getData(`comments?postId=${userId}`);
-    // console.log(getComments);
-    const photo = getPhoto.url;
-    const userName = getUserName[0].username;
-    const comments = getComments;
-    // console.log(`${dataType}${currentId}`);
-    // console.log(data);
-    const newPost = { ...post, photo, userName, comments };
-    setPost(newPost);
-  };
+  // const getSingleData = async (currentId, userId) => {
+  //   const getPhoto = await getData(`photos/${currentId}`);
+  //   const getUserName = await getData(`users?id=${userId}`);
+  //   const getComments = await getData(`comments?postId=${userId}`);
+  //   // console.log(getComments);
+  //   const photo = getPhoto.url;
+  //   const userName = getUserName[0].username;
+  //   const comments = getComments;
+  //   // console.log(`${dataType}${currentId}`);
+  //   // console.log(data);
+  //   const newPost = { ...post, photo, userName, comments };
+  //   setPost(newPost);
+  // };
 
   const handleBullet = e => {
     e.preventDefault();
@@ -40,9 +40,9 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  useEffect(() => {
-    getSingleData(props.id, props.userId);
-  }, []);
+  // useEffect(() => {
+  //   getSingleData(props.id, props.userId);
+  // }, []);
 
   useEffect(() => {
     const handleCheck = e => {
