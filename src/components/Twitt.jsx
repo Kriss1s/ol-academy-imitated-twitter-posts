@@ -101,7 +101,9 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
           <div className=' btn-container ' ref={btnRef}>
             <div
               className='icon-box comments'
-              onClick={() => handleUpdateList(post.id)}
+              onClick={() => {
+                posts.length > 1 && handleUpdateList(post.id);
+              }}
             >
               <FiMessageCircle className='icon' />
               <span>{post.comments.length}</span>
