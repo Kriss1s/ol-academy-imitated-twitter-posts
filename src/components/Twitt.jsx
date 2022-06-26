@@ -10,6 +10,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
   });
   const ref = useRef();
   const menuRef = useRef();
+  const btnRef = useRef();
   const [isMenuVisible, setIsMenuVisible] = useState();
 
   // const getSingleData = async (currentId, userId) => {
@@ -55,7 +56,14 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
 
   return (
     <>
-      <div className='twitt-container'>
+      <div
+        className='twitt-container'
+        onClick={e => {
+          if (posts.length > 1 && !btnRef.current.contains(e.target)) {
+            handleUpdateList(post.id);
+          }
+        }}
+      >
         <div className='avatar-container'>
           <div
             className='avatar'
@@ -67,7 +75,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
 
         <div className='content-container'>
           <div
-            onClick={() => handleUpdateList(post.id)}
+            // onClick={() => handleUpdateList(post.id)}
             className='content-header'
           >
             <h3>{post.userName}</h3>
@@ -77,31 +85,39 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
           </div>
           <div
             className='content-body'
-            onClick={() => handleUpdateList(post.id)}
+            // onClick={() => handleUpdateList(post.id)}
           >
             <div className='text'>{post.body}</div>
             <div className='img-div'>
               <img className='post-img' src={post.photo} alt={post.photoText} />
             </div>
           </div>
-          <div className=' btn-container '>
+          <div className=' btn-container ' ref={btnRef}>
             <div
               className='icon-box comments'
               onClick={() => handleUpdateList(post.id)}
             >
               <FiMessageCircle className='icon' />
-              <span>{getRandomInt(500)}</span>
+              <span>{post.comments.length}</span>
             </div>
             <div className=' icon-box reposts'>
               <BiRepost className='icon' />
-              <span>{getRandomInt(3000)}</span>
+              <span>{post.sharedNumber}</span>
             </div>
             <div
-              onClick={() => setPost({ ...post, liked: !post.liked })}
+              onClick={() =>
+                setPost({
+                  ...post,
+                  liked: !post.liked,
+                  likesNumber: post.liked
+                    ? post.likesNumber + 1
+                    : post.likesNumber - 1,
+                })
+              }
               className={`like icon-box ${post.liked && 'active'}`}
             >
               <BsHeart className={`icon icon-like ${post.liked && 'active'}`} />
-              <span>{getRandomInt(10000)}</span>
+              <span>{post.likesNumber}</span>
             </div>
             <div className='icon-box share'>
               <BiShare style={{ transform: 'scaleX(-1)' }} className='icon' />

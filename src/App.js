@@ -36,6 +36,8 @@ function App() {
       e.userName = users[e.userId].username;
       e.liked = false;
       e.comments = [...comments.filter(com => com.postId === e.id)];
+      e.likesNumber = getRandomInt(10000);
+      e.sharedNumber = getRandomInt(1000);
     });
 
     // console.log(postsList);
@@ -74,3 +76,7 @@ function App() {
 }
 
 export default App;
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
