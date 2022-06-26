@@ -32,7 +32,13 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
     e.stopPropagation();
     setIsMenuVisible(!isMenuVisible);
   };
-
+  const likeFunction = () => {
+    setPost({
+      ...post,
+      liked: !post.liked,
+      likesNumber: post.liked ? post.likesNumber - 1 : post.likesNumber + 1,
+    });
+  };
   // useEffect(() => {
   //   getSingleData(props.id, props.userId);
   // }, []);
@@ -105,15 +111,7 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
               <span>{post.sharedNumber}</span>
             </div>
             <div
-              onClick={() =>
-                setPost({
-                  ...post,
-                  liked: !post.liked,
-                  likesNumber: post.liked
-                    ? post.likesNumber - 1
-                    : post.likesNumber + 1,
-                })
-              }
+              onClick={likeFunction}
               className={`like icon-box ${post.liked && 'active'}`}
             >
               <BsHeart className={`icon icon-like ${post.liked && 'active'}`} />
@@ -134,9 +132,10 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
             }}
           >
             <li
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation();
                 setIsMenuVisible(!isMenuVisible);
-                setPost({ ...post, liked: !post.liked });
+                likeFunction();
               }}
             >
               {post.liked === true ? 'Unlike' : 'Like'}
