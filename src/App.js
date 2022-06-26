@@ -22,28 +22,6 @@ function App() {
   //   return data;
   // };
 
-  const createPostList = async num => {
-    let data = await getData('posts');
-
-    let postsList = data.filter(e => e.id <= num * 8 && Number(e.id) % 8 === 0);
-    let users = await getData('users');
-    let photos = await getData('photos');
-    let comments = await getData('comments');
-    // console.log(postsList);
-    postsList.forEach(e => {
-      e.photo = photos[e.id].url;
-      e.photoText = photos[e.id].title;
-      e.userName = users[e.userId].username;
-      e.liked = false;
-      e.comments = [...comments.filter(com => com.postId === e.id)];
-      e.likesNumber = getRandomInt(10000);
-      e.sharedNumber = getRandomInt(1000);
-    });
-
-    // console.log(postsList);
-    setPosts([...postsList]);
-  };
-
   const handleUpdateList = id => {
     // console.log('eee');
     const newData = posts.filter(e => e.id === id);
@@ -51,6 +29,30 @@ function App() {
   };
 
   useEffect(() => {
+    const createPostList = async num => {
+      let data = await getData('posts');
+
+      let postsList = data.filter(
+        e => e.id <= num * 8 && Number(e.id) % 8 === 0
+      );
+      let users = await getData('users');
+      let photos = await getData('photos');
+      let comments = await getData('comments');
+      // console.log(postsList);
+      postsList.forEach(e => {
+        e.photo = photos[e.id].url;
+        e.photoText = photos[e.id].title;
+        e.userName = users[e.userId].username;
+        e.liked = false;
+        e.comments = [...comments.filter(com => com.postId === e.id)];
+        e.likesNumber = getRandomInt(10000);
+        e.sharedNumber = getRandomInt(1000);
+      });
+
+      // console.log(postsList);
+      setPosts([...postsList]);
+    };
+
     createPostList(numberOfPosts);
   }, []);
 

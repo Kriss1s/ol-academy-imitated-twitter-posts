@@ -110,8 +110,8 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
                   ...post,
                   liked: !post.liked,
                   likesNumber: post.liked
-                    ? post.likesNumber + 1
-                    : post.likesNumber - 1,
+                    ? post.likesNumber - 1
+                    : post.likesNumber + 1,
                 })
               }
               className={`like icon-box ${post.liked && 'active'}`}
