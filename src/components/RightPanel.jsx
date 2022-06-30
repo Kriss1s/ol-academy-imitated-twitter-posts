@@ -1,8 +1,8 @@
-import { FaToiletPaperSlash } from 'react-icons/fa';
+import { getRandomInt } from '../functions/additionalFunctions';
 
 export default function RightPanel() {
   const trends = ['Tesla', 'Movies', 'Harry Potter', 'Space', 'React'];
-  const follow = [];
+
   return (
     <div className='right-container'>
       <div className='input-cont'>
@@ -21,8 +21,4 @@ export default function RightPanel() {
       <div className='toFollow'> </div>
     </div>
   );
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
 }

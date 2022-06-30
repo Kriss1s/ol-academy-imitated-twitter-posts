@@ -2,9 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { BsHeart } from 'react-icons/bs';
 import { FiMessageCircle } from 'react-icons/fi';
 import { BiRepost, BiShare } from 'react-icons/bi';
+import {
+  getRandomInt,
+  randomLightColor,
+} from '../functions/additionalFunctions';
 import './Twitt.css';
 
-export default function Twitt({ props, getData, handleUpdateList, posts }) {
+export default function Twitt({ props, handleUpdateList, posts }) {
   const [post, setPost] = useState({
     ...props,
   });
@@ -12,20 +16,6 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
   const menuRef = useRef();
   const btnRef = useRef();
   const [isMenuVisible, setIsMenuVisible] = useState();
-
-  // const getSingleData = async (currentId, userId) => {
-  //   const getPhoto = await getData(`photos/${currentId}`);
-  //   const getUserName = await getData(`users?id=${userId}`);
-  //   const getComments = await getData(`comments?postId=${userId}`);
-  //   // console.log(getComments);
-  //   const photo = getPhoto.url;
-  //   const userName = getUserName[0].username;
-  //   const comments = getComments;
-  //   // console.log(`${dataType}${currentId}`);
-  //   // console.log(data);
-  //   const newPost = { ...post, photo, userName, comments };
-  //   setPost(newPost);
-  // };
 
   const handleBullet = e => {
     e.preventDefault();
@@ -39,10 +29,6 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
       likesNumber: post.liked ? post.likesNumber - 1 : post.likesNumber + 1,
     });
   };
-  // useEffect(() => {
-  //   getSingleData(props.id, props.userId);
-  // }, []);
-
   useEffect(() => {
     const handleCheck = e => {
       if (
@@ -80,19 +66,13 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
         </div>
 
         <div className='content-container'>
-          <div
-            // onClick={() => handleUpdateList(post.id)}
-            className='content-header'
-          >
+          <div className='content-header'>
             <h3>{post.userName}</h3>
             <div className='more-btn' onClick={e => handleBullet(e)} ref={ref}>
               ...
             </div>
           </div>
-          <div
-            className='content-body'
-            // onClick={() => handleUpdateList(post.id)}
-          >
+          <div className='content-body'>
             <div className='text'>{post.body}</div>
             <div className='img-div'>
               <img className='post-img' src={post.photo} alt={post.photoText} />
@@ -204,16 +184,4 @@ export default function Twitt({ props, getData, handleUpdateList, posts }) {
       )}
     </>
   );
-}
-
-const randomLightColor = () => {
-  let color = '#';
-  for (let i = 0; i < 3; i++)
-    color += (
-      '0' + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)
-    ).slice(-2);
-  return color;
-};
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
 }

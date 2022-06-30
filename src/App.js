@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import RightPanel from './components/RightPanel';
+import { getRandomInt } from './functions/additionalFunctions';
 import './App.css';
 import Twitt from './components/Twitt';
 
@@ -15,15 +16,7 @@ function App() {
     return data;
   };
 
-  // const getSingleData = async (dataType, currentId) => {
-  //   const data = await getData(`${dataType}${currentId}`);
-  //   // console.log(`${dataType}${currentId}`);
-  //   // console.log(data);
-  //   return data;
-  // };
-
   const handleUpdateList = id => {
-    // console.log('eee');
     const newData = posts.filter(e => e.id === id);
     setPosts([...newData]);
   };
@@ -38,7 +31,6 @@ function App() {
       let users = await getData('users');
       let photos = await getData('photos');
       let comments = await getData('comments');
-      // console.log(postsList);
       postsList.forEach(e => {
         e.photo = photos[e.id].url;
         e.photoText = photos[e.id].title;
@@ -49,7 +41,6 @@ function App() {
         e.sharedNumber = getRandomInt(1000);
       });
 
-      // console.log(postsList);
       setPosts([...postsList]);
     };
 
@@ -78,7 +69,3 @@ function App() {
 }
 
 export default App;
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
