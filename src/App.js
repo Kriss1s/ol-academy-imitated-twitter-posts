@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import RightPanel from './components/RightPanel';
-import { getRandomInt } from './functions/additionalFunctions';
+import { getRandomInt } from './util/index';
 import './App.css';
 import Twitt from './components/Twitt';
 

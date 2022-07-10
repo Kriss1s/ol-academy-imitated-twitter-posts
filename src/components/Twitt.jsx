@@ -2,10 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { BsHeart } from 'react-icons/bs';
 import { FiMessageCircle } from 'react-icons/fi';
 import { BiRepost, BiShare } from 'react-icons/bi';
-import {
-  getRandomInt,
-  randomLightColor,
-} from '../functions/additionalFunctions';
+import { getRandomInt, randomLightColor } from '../functions/index';
 import './Twitt.css';
 
 export default function Twitt({ props, handleUpdateList, posts }) {

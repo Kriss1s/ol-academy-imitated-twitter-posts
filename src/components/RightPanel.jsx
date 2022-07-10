@@ -1,8 +1,8 @@
-import { getRandomInt } from '../functions/additionalFunctions';
+import { getRandomInt } from '../util/index.js';
+
+const trends = ['Tesla', 'Movies', 'Harry Potter', 'Space', 'React'];
 
 export default function RightPanel() {
-  const trends = ['Tesla', 'Movies', 'Harry Potter', 'Space', 'React'];
-
   return (
     <div className='right-container'>
       <div className='input-cont'>
